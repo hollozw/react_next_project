@@ -1,0 +1,19 @@
+.nav-lists {
+  @apply w-full flex flex-wrap;
+}
+.lists {
+  border: 1px solid #fff;
+  @apply h-10 leading-10 pl-5 pr-5 mr-1 relative rounded-md;
+  &::after {
+    content: "|";
+    @apply ml-5 absolute;
+  }
+  &:hover {
+    @apply bg-gray-200 cursor-pointer;
+  }
+}
+// .lists-be::after {
+//   content: "|";
+//   margin-left: 1.25rem;
+//   position: absolute;
+// }

@@ -1,0 +1,28 @@
+$title-height: 30px;
+
+header {
+  border-bottom: 1px solid #ccc;
+}
+
+.photo_nav {
+  width: 300px;
+  height: 400px;
+  margin: 10px;
+  .title {
+    width: 100%;
+    height: $title-height;
+    line-height: $title-height;
+    text-align: center;
+  }
+  .photo-container {
+    width: 100%;
+    height: calc(100% - $title-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .photo {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
