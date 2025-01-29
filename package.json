@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "ahooks": "^3.8.4",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.83.0"
+    "sass": "^1.83.0",
+    "sortablejs": "^1.15.6"
   },
   "devDependencies": {
     "@types/node": "^20",
