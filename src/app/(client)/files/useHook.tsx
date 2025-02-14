@@ -5,7 +5,7 @@ import { Sortable } from "sortablejs";
 type TProps = {
   className: string;
 };
-export const getSortable = ({ className }: TProps) => {
+export const useSortable = ({ className }: TProps) => {
   const [sortableClass, setSortableClass] = useState<any>(null);
 
   function createSortable(sortables: NodeListOf<Element>) {
@@ -28,4 +28,33 @@ export const getSortable = ({ className }: TProps) => {
     }
   }, [className]);
   return sortableClass;
+};
+
+export const useFiles = () => {
+  const [file, setFile] = useState<null | File>(null);
+
+  const onFileChange = (e: any) => {
+    const selectedFile = e.target.files[0];
+    console.log(selectedFile instanceof File, "selectedFile");
+  };
+
+  const handleFileUpload = () => {
+    if (!(file instanceof File)) return;
+    const formData = new FormData();
+    formData.append("file", file);
+
+    // 上传文件到服务器
+    fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log("文件上传成功:", data))
+      .catch((error) => console.error("上传失败:", error));
+  };
+
+  return {
+    file,
+    onFileChange,
+  };
 };
