@@ -1,4 +1,6 @@
 "use client";
+import { getType } from "@/Functions/Fun";
+import { TFun } from "@/Functions/type";
 import { useEffect, useState } from "react";
 import { Sortable } from "sortablejs";
 
@@ -27,34 +29,29 @@ export const useSortable = ({ className }: TProps) => {
       createSortable(sortables);
     }
   }, [className]);
-  return sortableClass;
+
+  return { sortableClass };
 };
 
-export const useFiles = () => {
-  const [file, setFile] = useState<null | File>(null);
-
+export const useFiles = (isSubmit: boolean, setIsSubmit: any) => {
+  const [files, setFile] = useState<File[]>([]);
   const onFileChange = (e: any) => {
-    const selectedFile = e.target.files[0];
-    console.log(selectedFile instanceof File, "selectedFile");
-  };
-
-  const handleFileUpload = () => {
-    if (!(file instanceof File)) return;
-    const formData = new FormData();
-    formData.append("file", file);
-
-    // 上传文件到服务器
-    fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => console.log("文件上传成功:", data))
-      .catch((error) => console.error("上传失败:", error));
+    const selectedFile: any[] = Array.from(e.target.files ?? []);
+    setFile((val) => {
+      if (isSubmit) {
+        setIsSubmit(false);
+        return selectedFile.filter((file) => file.type.startsWith("image/"));
+      } else {
+        return Array.from(val).concat(
+          selectedFile.filter((file) => file.type.startsWith("image/"))
+        );
+      }
+    });
   };
 
   return {
-    file,
+    files,
+    setFile,
     onFileChange,
   };
 };

@@ -28,3 +28,15 @@ header {
     }
   }
 }
+
+.inputFile {
+  width: 10rem;
+  height: 5rem;
+  display: block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10%;
+  line-height: 5rem;
+  text-align: center;
+  cursor: pointer;
+}
