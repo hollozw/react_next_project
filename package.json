@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "ahooks": "^3.8.4",
+    "jszip": "^3.10.1",
+    "lodash": "^4.17.21",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
