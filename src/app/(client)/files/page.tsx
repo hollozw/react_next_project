@@ -1,27 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./index.scss";
 import { useFiles, useSortable } from "./useHook";
 import { useRequest } from "ahooks";
 import { downloadMultipleFiles, changeFileName } from "./methods";
 import { Input } from "./Input";
 
-const Index = () => {
-  const dir = "";
+const Index = (props: unknown) => {
   const { data, loading } = useRequest(async () => {});
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const navRef = useRef<HTMLElement | null>(null);
 
   const { files, setFile, onFileChange } = useFiles(isSubmit, setIsSubmit);
 
-  useSortable({ className: ".nav_class" });
+  useSortable(navRef);
 
   function submitFile() {
+    if (navRef.current === null) return;
     setIsSubmit(true);
-    const DOM = document.querySelector(".nav_class") as Element;
-    const newFileList: any[] = [];
-    Array.from(DOM?.children).forEach((item, index) => {
-      const fileIndex = item?.getAttribute("index");
-      newFileList[index] = files[fileIndex];
+    const list = Array.from(navRef.current.children);
+    const newFileList: File[] = [];
+    list.forEach((item, index) => {
+      const fileIndex = item.getAttribute("data-index") as string;
+      newFileList[index] = files[Number(fileIndex)];
     });
     downloadMultipleFiles(newFileList);
   }
@@ -58,29 +59,27 @@ const Index = () => {
           提交文件
         </button>
       </header>
-      <nav className="flex flex-wrap nav_class border-t-2 border-black ">
-        {Array.from(files, (file: any, index) => {
+      <nav
+        ref={navRef}
+        className="flex flex-wrap nav_class border-t-2 border-black "
+      >
+        {Array.from(files, (file: File, index: number) => {
           const fileUrl = URL.createObjectURL(file);
           return (
             <>
-              <div className="photo_nav" key={index} index={index}>
+              <div className="photo_nav" key={index} data-index={index}>
                 <Input
                   class="title"
                   val={file.name}
                   onChange={(val: string) => {
-                    setFile((file: any[]) => {
+                    setFile((file: File[]) => {
                       file[index] = changeFileName(file[index], val);
                       return file;
                     });
                   }}
                 />
                 <div className="photo-container">
-                  <img
-                    alt="无法加载该图片"
-                    className="photo"
-                    src={fileUrl}
-                    alt={file.name}
-                  />
+                  <img className="photo" src={fileUrl} alt={file.name} />
                 </div>
               </div>
             </>
