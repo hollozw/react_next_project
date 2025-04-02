@@ -1,9 +1,5 @@
 import JSZip from "jszip";
-
-interface IUploadFileParm {
-  dir?: string;
-  file?: File;
-}
+import { IUploadFileParm, TGetFIleDataIndex } from "./type-file";
 
 export const uploadFile = async ({ dir, file }: IUploadFileParm) => {
   try {
@@ -20,31 +16,13 @@ export const uploadFile = async ({ dir, file }: IUploadFileParm) => {
   }
 };
 
-export function downloadFile(file: any) {
-  // 创建临时的 URL
-  const url = URL.createObjectURL(file);
-
-  // 创建一个 <a> 标签并设置其属性
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = file.name; // 设置下载的文件名（你可以根据需要指定自定义名称）
-
-  // 触发点击事件下载文件
-  document.body.appendChild(a); // 将 <a> 标签添加到 DOM 中
-  a.click(); // 模拟点击
-  document.body.removeChild(a); // 下载后移除 <a> 标签
-
-  // 释放临时 URL
-  URL.revokeObjectURL(url);
-}
-
-export function downloadMultipleFiles(files: any) {
+export function downloadMultipleFiles(files: File[]) {
   const zip = new JSZip();
-  files.forEach((file: any) => {
+  files.forEach((file) => {
     zip.file(file.name, file);
   });
 
-  zip.generateAsync({ type: "blob" }).then((content: any) => {
+  zip.generateAsync({ type: "blob" }).then((content) => {
     const a = document.createElement("a");
     const url = URL.createObjectURL(content);
     a.href = url;
@@ -63,3 +41,11 @@ export function changeFileName(file: File, newName: string) {
 
   return renamedFile;
 }
+
+export const getFileDataIndex: TGetFIleDataIndex = (eLementList) => {
+  const dataIndex = eLementList.map((item, index) => {
+    const fileIndex = item.getAttribute("data-index") as string;
+    return Number(fileIndex);
+  });
+  return dataIndex;
+};

@@ -1,42 +1,53 @@
 "use client";
-import { getType } from "@/Functions/Fun";
-import { TFun } from "@/Functions/type";
-import { useEffect, useState } from "react";
-import { Sortable } from "sortablejs";
+import {
+  Dispatch,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
+import Sortable from "sortablejs";
+import { TSetState } from "./type-file";
+import { getFileDataIndex } from "./methods";
 
-type TProps = {
-  className: string;
-};
-export const useSortable = ({ className }: TProps) => {
-  const [sortableClass, setSortableClass] = useState<any>(null);
+export const useSortable = (navRef: MutableRefObject<HTMLElement | null>) => {
+  const [sortable, setSortable] = useState<Sortable | null>(null);
+  const [sortableIndex, setSortableIndex] = useState<number[]>([]);
 
-  function createSortable(sortables: NodeListOf<Element>) {
-    const sortable: any[] = [];
-    sortables.forEach((item, index) => {
-      sortable.push(
-        new Sortable(item, {
-          animation: 150,
-          ghostClass: "blue-background-class",
-        })
-      );
-    });
-    setSortableClass(sortable);
+  function onEnd(event: Sortable.SortableEvent) {
+    const childElements = Array.from(event.target.childNodes).filter(
+      (node): node is HTMLElement => node.nodeType === Node.ELEMENT_NODE
+    );
+    setSortableIndex(getFileDataIndex(childElements));
+  }
+
+  function createSortable(sortableNode: HTMLElement) {
+    setSortable(
+      new Sortable(sortableNode, {
+        animation: 150,
+        ghostClass: "blue-background-class",
+        onEnd,
+      })
+    );
   }
 
   useEffect(() => {
-    if (className || !sortableClass) {
-      const sortables = document.querySelectorAll(className);
+    if (navRef.current !== null) {
+      const sortables = navRef.current;
       createSortable(sortables);
     }
-  }, [className]);
+  }, [navRef.current]);
 
-  return { sortableClass };
+  return { sortable, sortableIndex };
 };
 
-export const useFiles = (isSubmit: boolean, setIsSubmit: any) => {
+export const useFiles = (
+  isSubmit: boolean,
+  setIsSubmit: TSetState<boolean>
+) => {
   const [files, setFile] = useState<File[]>([]);
-  const onFileChange = (e: any) => {
-    const selectedFile: any[] = Array.from(e.target.files ?? []);
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile: File[] = Array.from(e.target.files ?? []);
     setFile((val) => {
       if (isSubmit) {
         setIsSubmit(false);
