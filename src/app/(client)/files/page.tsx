@@ -13,17 +13,16 @@ const Index = (props: unknown) => {
 
   const { files, setFile, onFileChange } = useFiles(isSubmit, setIsSubmit);
 
-  useSortable(navRef);
+  const { sortableIndex } = useSortable(navRef);
 
   function submitFile() {
     if (navRef.current === null) return;
     setIsSubmit(true);
-    const list = Array.from(navRef.current.children);
-    const newFileList: File[] = [];
-    list.forEach((item, index) => {
-      const fileIndex = item.getAttribute("data-index") as string;
-      newFileList[index] = files[Number(fileIndex)];
+    const newFileList: File[] = [...files];
+    sortableIndex.forEach((item, index: number) => {
+      newFileList[index] = files[item];
     });
+    console.log(newFileList, 'newFileList')
     downloadMultipleFiles(newFileList);
   }
 

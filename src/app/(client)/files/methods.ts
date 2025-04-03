@@ -16,7 +16,8 @@ export const uploadFile = async ({ dir, file }: IUploadFileParm) => {
   }
 };
 
-export function downloadMultipleFiles(files: File[]) {
+export function downloadMultipleFiles(files: File[] | []) {
+  if (files.length == 0) return;
   const zip = new JSZip();
   files.forEach((file) => {
     zip.file(file.name, file);
