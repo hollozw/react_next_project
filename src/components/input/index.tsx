@@ -4,20 +4,28 @@ import "./index.scss";
 import InputDefault from "./input-default";
 import InputFile from "./special-Input/input-file";
 import InputSubmit from "./special-Input/input-submit";
-import { IInputProps, TspacialInputType } from "./type-input";
+import {
+  checkSpecialInputType,
+  getInputPropsType,
+  TInputPropsProps,
+  TspacialInputType,
+} from "./typescript";
 
-const Input = (props: IInputProps) => {
-  const { type = "" } = props || {};
+const Input = (props: TInputPropsProps) => {
+  const { type } = props || {};
 
   function getInputByType(type: string): React.ReactNode {
-    const obj: Record<TspacialInputType, React.ReactNode> = {
-      file: <InputFile {...props} />,
-      submit: <InputSubmit {...props} />,
-    };
-    if (type in obj) {
-      return obj[type as TspacialInputType];
+    if (checkSpecialInputType(type)) {
+      const Props = getInputPropsType(type, props);
+      const obj: Record<TspacialInputType, React.ReactNode> = {
+        file: <InputFile {...Props} />,
+        submit: <InputSubmit {...Props} />,
+      };
+      return obj[type];
+    } else {
+      const Props = getInputPropsType(type, props);
+      return <InputDefault {...Props} />;
     }
-    return <InputDefault {...props} />;
   }
 
   return <>{getInputByType(type)}</>;

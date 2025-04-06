@@ -17,7 +17,13 @@ class Login extends React.Component<IProps> {
           <div className="md:w-2/3 md:h-2/3 w-1/2 h-1/2 absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] rounded-[3%] border-[1px] border-[#404040] box-border bg-background-highlight md:p-8 p-4">
             <div className="w-full h-[100px]">
               {/* <Form /> */}
-              <Input type={"file"} name="file" id="fileSubmit" />
+              <Input
+                value={""}
+                onChange={() => {}}
+                type={"file"}
+                name="file"
+                id="fileSubmit"
+              />
             </div>
           </div>
         </nav>

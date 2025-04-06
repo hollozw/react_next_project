@@ -1,4 +1,4 @@
-import { TInputSubmitProps } from "../type-input";
+import { TInputSubmitProps } from "../typescript";
 
 const InputSubmit = (props: TInputSubmitProps) => {
   const { type } = props;

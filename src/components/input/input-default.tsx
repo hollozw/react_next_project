@@ -1,4 +1,4 @@
-import { IInputDefaultProps } from "./type-input";
+import { IInputDefaultProps } from "./typescript";
 
 const InputDefault = (props: IInputDefaultProps<string>) => {
   const { labelProps = {}, name, type, ...inputProps } = props || {};
