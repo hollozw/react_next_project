@@ -1,7 +1,7 @@
-import { TInputPropsProps, TspacialInputType } from "./index";
+import { TInputProps, TspacialInputType } from "./index";
 
 export type TInputFileProps = Pick<
-  TInputPropsProps,
+  TInputProps,
   "name" | "value" | "onChange"
 > & {
   type: TspacialInputType;

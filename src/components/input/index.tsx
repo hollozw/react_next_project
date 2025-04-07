@@ -2,16 +2,16 @@
 
 import "./index.scss";
 import InputDefault from "./input-default";
-import InputFile from "./special-Input/input-file";
-import InputSubmit from "./special-Input/input-submit";
+import InputFile from "./Input-Type/input-file";
+import InputSubmit from "./Input-Type/input-submit";
 import {
   checkSpecialInputType,
   getInputPropsType,
-  TInputPropsProps,
+  TInputProps,
   TspacialInputType,
 } from "./typescript";
 
-const Input = (props: TInputPropsProps) => {
+const Input = (props: TInputProps) => {
   const { type } = props || {};
 
   function getInputByType(type: string): React.ReactNode {
