@@ -12,10 +12,12 @@ export type TInputDefaultProps = Pick<
   TInputProps,
   "name" | "type" | "value"
 > & {
+  id?: string;
+  className?: string;
   defaultValue?: number | string;
   onChange?: (
     e: React.ChangeEvent<HTMLInputElement>
-  ) => boolean | undefined | Promise<boolean | undefined>;
+  ) => boolean | void | Promise<boolean | void>;
 };
 
 export type TspacialInputType = "file" | "submit";

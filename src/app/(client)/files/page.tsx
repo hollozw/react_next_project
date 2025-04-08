@@ -4,7 +4,7 @@ import "./index.scss";
 import { useFiles, useSortable } from "./useHook";
 import { useRequest } from "ahooks";
 import { downloadMultipleFiles, changeFileName } from "./methods";
-import { Input } from "./Input";
+// import { Input } from "./Input";
 
 const Index = (props: unknown) => {
   const { data, loading } = useRequest(async () => {});
@@ -67,7 +67,7 @@ const Index = (props: unknown) => {
           return (
             <>
               <div className="photo_nav" key={index} data-index={index}>
-                <Input
+                {/* <Input
                   class="title"
                   val={file.name}
                   onChange={(val: string) => {
@@ -76,7 +76,7 @@ const Index = (props: unknown) => {
                       return file;
                     });
                   }}
-                />
+                /> */}
                 <div className="photo-container">
                   <img className="photo" src={fileUrl} alt={file.name} />
                 </div>
