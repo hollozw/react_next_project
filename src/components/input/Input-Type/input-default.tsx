@@ -13,7 +13,7 @@ const InputDefault = (props: TInputDefaultProps) => {
 
   return (
     <>
-      <label htmlFor={props.id} className="input-label">
+      <label htmlFor={props.id} className="input-label h-[2rem] w-[200px]">
         <div className={inputForce ? 'label-span span-click' : 'label-span'}>{props.name}</div>
         <input
           className="input-value"
