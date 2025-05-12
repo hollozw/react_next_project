@@ -1,20 +1,51 @@
-import { TInputFileProps } from "../typescript/special";
+import { useEffect, useState } from "react";
+import Input from "./input";
 
-const InputFile = (props: TInputFileProps) => {
-  const { type, id = "file", onChange = () => {} } = props;
+type TInputValueFile = FileList | null;
 
-  function onFileChange(events: React.ChangeEvent<HTMLInputElement>) {
-    onChange(events);
+type TInputFileType = {
+  /** 文件数据 */
+  value?: TInputValueFile;
+  /** 文件默认数据 */
+  defaultValue?: TInputValueFile;
+  name: string;
+};
+
+const InputFile = (props: TInputFileType) => {
+  const { defaultValue } = props || {};
+  const [value, setValueState] = useDefaultValue({
+    defaultValue: defaultValue || null,
+    value: props.value || null,
+  });
+
+  function onChange(evt: React.ChangeEvent<HTMLInputElement>) {
+    const files = evt.target.files;
+    setValueState(files);
   }
 
   return (
     <>
-      <input type={type} id={id} className="hidden" onChange={onFileChange} />
-      <label htmlFor={id}>
-        <div className="w-[200px] h-[50px] bg-red-200"></div>
-      </label>
+      <Input {...props} type="file" onChange={onChange} value={value} />
     </>
   );
+};
+
+type TUseDefaultValue<T = string> = (val: {
+  defaultValue: T;
+  value: T;
+}) => [T, React.Dispatch<T>];
+
+const useDefaultValue: TUseDefaultValue<TInputValueFile> = ({
+  defaultValue,
+  value,
+}) => {
+  const [valueState, setValueState] = useState<TInputValueFile>(null);
+
+  useEffect(() => {
+    if (defaultValue) setValueState(defaultValue);
+  }, [defaultValue]);
+
+  return [value !== undefined ? value : valueState, setValueState];
 };
 
 export default InputFile;
