@@ -1,0 +1,22 @@
+.input-label {
+  .label-span {
+    @apply rounded-[5px] h-full transition-all duration-[0.5s] truncate w-[20%] p-1 box-border leading-[1.5rem] text-center;
+  }
+  .span-click {
+    @apply absolute translate-y-[-50%] translate-x-[20px] scale-[0.7];
+  }
+
+  .input-value {
+    &:hover {
+      @apply border-[#8cbff8]
+    }
+
+    &:focus {
+      @apply rounded-[5px] outline-none border-[1px] border-borderColor-highlight w-full;
+    }
+
+    @apply right-0 top-0 absolute transition-all duration-[1s]  border-t-0 border-l-0 border-r-0 border-b-[1px] w-[80%] min-w-[9.5rem] h-full border-gray-400 bg-transparent p-1 box-border h-[2rem] pl-2 pr-2;
+  }
+
+  @apply block h-[2rem] min-h-[2rem] min-w-[15rem] w-full relative;
+}
