@@ -1,6 +1,6 @@
 import React from "react";
 import { getDefaultValue } from "./style";
-import { IConfigContext, TComponentName, TTheme } from ".";
+import { IConfigContext, TComponentName, TTheme } from "./typescript";
 
 export const ConfigContext = React.createContext<IConfigContext>({
   components: getDefaultValue,
