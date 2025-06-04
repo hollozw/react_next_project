@@ -9,15 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "ahooks": "^3.8.4",
+    "clsx": "^2.1.1",
+    "jszip": "^3.10.1",
+    "lodash": "^4.17.21",
     "next": "14.0.3",
+    "rc-input": "^1.8.0",
+    "rc-util": "^5.44.4",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.83.0"
+    "sass": "^1.83.0",
+    "sortablejs": "^1.15.6",
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/sortablejs": "^1.15.8",
+    "@types/three": "^0.175.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
