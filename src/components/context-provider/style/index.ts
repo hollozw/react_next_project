@@ -5,7 +5,7 @@ export const getDefaultValue: (theme: TTheme) => TDefaultConfiguration = (
 ) => {
   return {
     input: {
-      className: `focus:outline-none focus:ring-0 border border-solid border-[#ccc] ${theme}-Border`,
+      className: `focus:outline-none focus:ring-0 focus:border-primary-${theme} border border-solid`,
     },
   };
 };

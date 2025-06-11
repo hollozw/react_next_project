@@ -18,7 +18,7 @@ export default function Home() {
         >
           按钮
         </button>
-        <Input ref={inputRef} />
+        <Input size={'large'} ref={inputRef} />
       </main>
     </ConfigTemeContext.Provider>
   );

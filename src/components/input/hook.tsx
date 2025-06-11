@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { SizeType, TTheme } from "../context-provider/typescript";
-import { sizeHeight } from "./utils";
+import { sizeFont, sizeHeight } from "./utils";
 
 export const useGetBorder = (border: boolean | undefined, theme: TTheme) => {
   return React.useMemo(() => {
@@ -9,9 +9,13 @@ export const useGetBorder = (border: boolean | undefined, theme: TTheme) => {
   }, [border, theme]);
 };
 
-export const useGetSize = (size: SizeType | undefined) => {
+export const useGetSize = (size: SizeType | undefined): React.CSSProperties => {
   return React.useMemo(() => {
     const value = size ?? "small";
-    return `min-h-[${sizeHeight[value]}]`;
+    return {
+      minHeight: sizeHeight[value],
+      lineHeight: sizeHeight[value],
+      fontSize: sizeFont[value],
+    };
   }, [size]);
 };

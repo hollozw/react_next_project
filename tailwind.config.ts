@@ -7,6 +7,14 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: require("./config/customTailwind").theme,
+  variants: {
+    extend: {
+      backgroundColor: ["dark"],
+      textColor: ["dark"],
+      borderColor: ["dark"],
+      ringColor: ["dark"],
+    },
+  },
   plugins: [require("./config/customTailwind").plugin],
 };
 export default config;

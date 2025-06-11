@@ -1,23 +1,24 @@
-import ReInput, { InputRef, InputProps as RcInputProps } from "rc-input";
+import ReInput, { InputRef } from "rc-input";
 import {
   ConfigTemeContext,
   useComponentConfig,
 } from "../context-provider/context";
-import { SizeType } from "../context-provider/typescript";
 import React, { useContext } from "react";
 import clsx from "clsx";
 import { TRefInput } from "./typescript";
 import { useGetBorder, useGetSize } from "./hook";
-
-interface InputProps extends Omit<RcInputProps, ""> {
-  size?: SizeType;
-  border?: boolean;
-  disabled?: boolean;
-  [key: `data-${string}`]: string | undefined;
-}
+import { InputProps } from "./typescript/index";
 
 const Input = React.forwardRef<TRefInput, InputProps>((props, ref) => {
-  const { onBlur, onFocus, border, disabled, size, ...rest } = props || {};
+  const {
+    onBlur,
+    onFocus,
+    border,
+    disabled,
+    size,
+    theme: propsTheme,
+    ...rest
+  } = props || {};
   const { theme } = useContext(ConfigTemeContext);
   const inputRef = React.useRef<InputRef>(null);
   const { className: configClassName = "", style: configStyle = {} } =
@@ -28,8 +29,8 @@ const Input = React.forwardRef<TRefInput, InputProps>((props, ref) => {
     return { ...inputMethods };
   }
 
-  const borderDefaultClass = useGetBorder(border, theme);
-  const sizeDefaultClass = useGetSize(size);
+  const borderDefaultClass = useGetBorder(border, propsTheme ?? theme);
+  const sizeDefaultStyle = useGetSize(size);
 
   function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
     onFocus?.(e);
@@ -44,7 +45,7 @@ const Input = React.forwardRef<TRefInput, InputProps>((props, ref) => {
     <ReInput
       ref={inputRef}
       className={clsx(configClassName, borderDefaultClass, props.className)}
-      style={{ ...configStyle, ...props.style }}
+      style={{ ...configStyle, ...sizeDefaultStyle, ...props.style }}
       {...rest}
       onFocus={handleFocus}
       onBlur={handleBlur}
