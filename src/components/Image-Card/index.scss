@@ -1,0 +1,8 @@
+.image-card {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @apply overflow-hidden rounded-lg h-[100px] w-[100px] cursor-pointer border-2
+}

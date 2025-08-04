@@ -1,3 +1,4 @@
+import TopBar from "@/components/TopBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -18,11 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="nav-lists">
-          {new Array(0).fill(0).map((item, index) => {
-            return <div className="lists">{item + index} list</div>;
-          })}
-        </nav>
+        <TopBar/>
         <main>{children}</main>
       </body>
     </html>

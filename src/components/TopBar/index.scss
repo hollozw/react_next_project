@@ -1,0 +1,94 @@
+$menu-height: 4rem;
+$sign-size: 3rem;
+
+.menu {
+  position: relative;
+  height: $menu-height;
+  overflow: hidden;
+  &::before{
+    position: absolute;
+    display: block;
+    bottom: 0;
+    transform: translateY(100%);
+    content: '';
+    height: ($menu-height / 10);
+    width: 100%;
+    background-color: black;
+    transition: transform 0.5s;
+  }
+
+  &:hover::before{
+    bottom: 0;
+    transform: translateY(0);
+  }
+
+  .menu-list {
+    height: $menu-height;
+    line-height: $menu-height;
+    margin: auto;
+    display: flex;
+    z-index: 10;
+    .menu-list-nav {
+      text-align: center;
+      min-width: 6rem;
+      max-width: 8rem;
+      box-sizing: border-box;
+      padding: 0 1rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .sign {
+    position: absolute;
+    bottom: 0;
+    width: $sign-size;
+    height: ($sign-size / 2);
+    overflow: hidden;
+    z-index: -1;
+    background-color: black;
+
+    // &::before {
+    //   top: 0;
+    //   left: 0;
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   width: ($sign-size / 3);
+    //   height: ($sign-size / 3);
+    //   background-color: black;
+    //   // border-radius: 0 0 50% 0;
+    // }
+
+    // &::after {
+    //   top: 0;
+    //   right: 0;
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   width: $sign-size;
+    //   height: $sign-size;
+    //   background-color: white;
+    //   border-radius: 0 0 0 50%;
+    // }
+
+    // .sign-center {
+    //   width: $sign-size;
+    //   height: $sign-size;
+    //   margin: auto;
+    //   background-color: white;
+    //   border-radius: 0 0 50% 50%;
+
+    //   &::after {
+    //     content: '';
+    //     box-sizing: border-box;
+    //     //border: 5px solid white;
+    //     width: 100%;
+    //     height: 100%;
+    //     display: block;
+    //     border-radius: 50%;
+    //     background-color: black;
+    //   }
+    // }
+  }
+}
