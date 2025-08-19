@@ -1,8 +1,8 @@
 import React from "react";
-import { SizeType, TTheme } from "../context-provider/typescript";
+import { SizeType, Theme } from "../context-provider/typescript";
 import { sizeFont, sizeHeight } from "./utils";
 
-export const useGetBorder = (border: boolean | undefined, theme: TTheme) => {
+export const useGetBorder = (border: boolean | undefined, theme: Theme) => {
   return React.useMemo(() => {
     if (!border) "";
     return `border border-${theme}`;

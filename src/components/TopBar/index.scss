@@ -1,56 +1,60 @@
-$menu-height: 5rem;
-$sign-size: 4rem;
+$header-height: 5rem;
+$menu-height: 4rem;
+$menu-width: 6rem;
+$btn-size: 4rem;
+
+@mixin menu-item-styles() {
+  width: $menu-width;
+  height: $menu-height;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  padding: 0 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+header {
+  height: $header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left,
+.right {
+  margin: 0.5rem;
+  width: $btn-size;
+  height: $btn-size;
+  background-color: black;
+}
 
 .menu {
-  position: relative;
   height: $menu-height;
-  overflow: hidden;
+  line-height: $menu-height;
+  position: relative;
 
   .menu-list {
-    height: $menu-height;
-    line-height: $menu-height;
-    margin: auto;
     display: flex;
-    position: relative;
 
     .menu-list-nav {
-      text-align: center;
-      width: 8rem;
-      box-sizing: border-box;
-      padding: 0 1rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      position: relative;
-      border-radius: 10%;
+      @include menu-item-styles();
 
-      &:hover{
+      &:hover {
         background-color: #f5f5f5e8;
       }
     }
+  }
 
-    .after {
-      &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 60%;
-        width: 1px;
-        background-color: #ccc;
-      }
-    }
-
-    .menu-list-bg {
-      position: absolute;
-      top: 0;
-      width: 8rem;
-      height: 100%;
-      border-radius: 10%;
-      background-color: #ccc;
-      translate
-    }
+  .select-list {
+    transition: all 0.5s;
+    @include menu-item-styles();
+    position: absolute;
+    background-color: #ccc;
+    content: '';
+    left: 0;
+    top: 0;
+    z-index: -1;
   }
 }

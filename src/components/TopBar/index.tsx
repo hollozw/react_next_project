@@ -3,38 +3,41 @@
 import Link from "next/link";
 import { btnList } from "./utils";
 import "./index.scss";
-import { useContext, useMemo } from "react";
+import { useContext, useRef } from "react";
 import { ConfigTemeContext } from "../context-provider/context";
+import { useMoving } from "./hooks";
 
 const TopBar = (props: any) => {
   const { theme } = useContext(ConfigTemeContext);
-  console.log(theme);
-  const { list, btnListLength } = useMemo(() => {
-    return { list: btnList, btnListLength: btnList.length };
-  }, []);
+  const menuRef = useRef(null);
+  // console.log(theme, "light");
+
+  const { select, positionX } = useMoving({ menuRef });
+
   return (
     <>
-      <header className="flex h-[4rem] justify-between">
-        <div className="w-[4rem]"></div>
+      <header>
+        <div className="left">icon</div>
         <div className="menu">
-          <div className="menu-list">
-            {list.map((item, index) => {
+          <div className="menu-list" ref={menuRef}>
+            {btnList.map((item, index) => {
               return (
                 <Link
                   key={`${item}_${index}`}
                   href={item.href}
-                  className={`menu-list-nav ${
-                    index !== btnListLength - 1 ? "after" : ""
-                  }`}
+                  className={`menu-list-nav`}
+                  onClick={() => {
+                    select(index);
+                  }}
                 >
                   {item.name}
                 </Link>
               );
             })}
-            <div className="menu-list-bg"></div>
           </div>
+          <div className="select-list" style={{ left: positionX }}></div>
         </div>
-        <div className="h-full w-[4rem]"></div>
+        <div className="right">menu</div>
       </header>
     </>
   );

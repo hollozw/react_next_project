@@ -1,6 +1,6 @@
-import { TDefaultConfiguration, TTheme } from "../typescript";
+import { TDefaultConfiguration, Theme } from "../typescript";
 
-export const getDefaultValue: (theme: TTheme) => TDefaultConfiguration = (
+export const getDefaultValue: (theme: Theme) => TDefaultConfiguration = (
   theme
 ) => {
   return {
