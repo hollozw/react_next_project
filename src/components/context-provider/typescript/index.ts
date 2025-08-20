@@ -20,3 +20,8 @@ export interface IConfigContext {
   prefixCls?: string;
   theme?: Theme;
 }
+
+export interface IConfigTemeContext {
+  theme: Theme;
+  toggleTheme: (theme: Theme) => void;
+}

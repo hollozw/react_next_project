@@ -42,18 +42,16 @@ header {
       @include menu-item-styles();
 
       &:hover {
-        background-color: #f5f5f5e8;
+        color: #646464;
       }
     }
   }
 
   .select-list {
-    transition: all 0.5s;
     @include menu-item-styles();
+    transition: all 0.5s;
     position: absolute;
-    background-color: #ccc;
-    content: '';
-    left: 0;
+    background-color: #cccccc31;
     top: 0;
     z-index: -1;
   }

@@ -1,13 +1,11 @@
 import ReInput, { InputRef } from "rc-input";
-import {
-  ConfigTemeContext,
-  useComponentConfig,
-} from "../context-provider/context";
+import { ConfigThemeContext } from "../context-provider/context";
 import React, { useContext } from "react";
 import clsx from "clsx";
 import { TRefInput } from "./typescript";
 import { useGetBorder, useGetSize } from "./hook";
 import { InputProps } from "./typescript/index";
+import { useComponentConfig } from "../context-provider/hooks";
 
 const Input = React.forwardRef<TRefInput, InputProps>((props, ref) => {
   const {
@@ -19,7 +17,7 @@ const Input = React.forwardRef<TRefInput, InputProps>((props, ref) => {
     theme: propsTheme,
     ...rest
   } = props || {};
-  const { theme } = useContext(ConfigTemeContext);
+  const { theme } = useContext(ConfigThemeContext);
   const inputRef = React.useRef<InputRef>(null);
   const { className: configClassName = "", style: configStyle = {} } =
     useComponentConfig("input") || {};

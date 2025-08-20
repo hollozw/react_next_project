@@ -2,7 +2,8 @@ import TopBar from "@/components/TopBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "./layout.scss"
+import "./layout.scss";
+import { ProviderConfigTheme } from "@/components/context-provider/hooks";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TopBar/>
-        <main>{children}</main>
+        <ProviderConfigTheme>
+          <TopBar />
+          <main>{children}</main>
+        </ProviderConfigTheme>
       </body>
     </html>
   );

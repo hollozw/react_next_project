@@ -3,7 +3,7 @@ import { classNameMerged } from "@/utils/utils";
 import "./index.scss";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { RotateAnimation } from "./hook";
-import { ConfigTemeContext } from "../context-provider/context";
+import { ConfigThemeContext } from "../context-provider/context";
 
 interface ImageCardProps {
   alt: string;
@@ -15,7 +15,7 @@ interface ImageCardProps {
 
 const ImageCard = (props: ImageCardProps) => {
   const { style, className, imageclassName, ...rest } = props || {};
-  const { theme } = useContext(ConfigTemeContext);
+  const { theme } = useContext(ConfigThemeContext);
   const refDiv = useRef<null | HTMLDivElement>(null);
   const [rotateAnimation, setRotateAnimation] =
     useState<null | RotateAnimation<HTMLElement>>(null);

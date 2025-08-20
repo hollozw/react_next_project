@@ -1,22 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { getDefaultValue } from "./style";
-import { IConfigContext, TComponentName, Theme } from "./typescript";
+import { IConfigContext, IConfigTemeContext, Theme } from "./typescript";
 
 export const ConfigContext = React.createContext<IConfigContext>({
   components: getDefaultValue,
 });
 
-export const ConfigTemeContext = React.createContext<{ theme: Theme }>({
+export const ConfigThemeContext = React.createContext<IConfigTemeContext>({
   theme: "light",
+  toggleTheme: (val) => {
+    console.log(val);
+  },
 });
-
-export const useComponentConfig = (name: TComponentName, theme?: Theme) => {
-  const { components } = React.useContext(ConfigContext);
-  const { theme: themeDefault } = React.useContext(ConfigTemeContext);
-
-  const props = components(theme || themeDefault)[name] || {};
-
-  return {
-    ...props,
-  };
-};

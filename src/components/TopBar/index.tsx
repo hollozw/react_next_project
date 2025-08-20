@@ -4,19 +4,23 @@ import Link from "next/link";
 import { btnList } from "./utils";
 import "./index.scss";
 import { useContext, useRef } from "react";
-import { ConfigTemeContext } from "../context-provider/context";
-import { useMoving } from "./hooks";
+import { ConfigThemeContext } from "../context-provider/context";
+import { useMoving, useTheme } from "./hooks";
+import { usePathname } from "next/navigation";
 
 const TopBar = (props: any) => {
-  const { theme } = useContext(ConfigTemeContext);
+  const pathname = usePathname();
+  const { theme, toggleTheme } = useContext(ConfigThemeContext);
   const menuRef = useRef(null);
-  // console.log(theme, "light");
 
-  const { select, positionX } = useMoving({ menuRef });
+  console.log(theme, "theme");
+
+  const { headerStyle } = useTheme(theme);
+  const { select, positionX } = useMoving({ menuRef, pathname });
 
   return (
     <>
-      <header>
+      <header style={headerStyle}>
         <div className="left">icon</div>
         <div className="menu">
           <div className="menu-list" ref={menuRef}>
@@ -25,7 +29,7 @@ const TopBar = (props: any) => {
                 <Link
                   key={`${item}_${index}`}
                   href={item.href}
-                  className={`menu-list-nav`}
+                  className="menu-list-nav"
                   onClick={() => {
                     select(index);
                   }}
@@ -35,9 +39,23 @@ const TopBar = (props: any) => {
               );
             })}
           </div>
-          <div className="select-list" style={{ left: positionX }}></div>
+          <div
+            className="select-list"
+            style={
+              positionX !== null
+                ? { left: positionX }
+                : { visibility: "hidden" }
+            }
+          ></div>
         </div>
-        <div className="right">menu</div>
+        <div
+          className="right"
+          onClick={() => {
+            toggleTheme(theme === "light" ? "dark" : "light");
+          }}
+        >
+          切换主题
+        </div>
       </header>
     </>
   );

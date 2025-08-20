@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ConfigTemeContext } from "../context-provider/context";
+import { ConfigThemeContext } from "../context-provider/context";
 
 const BackGroundCanvas = () => {
-  const { theme } = useContext(ConfigTemeContext);
+  const { theme } = useContext(ConfigThemeContext);
 
   return (
     <>
