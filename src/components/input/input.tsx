@@ -17,10 +17,12 @@ const Input = React.forwardRef<TRefInput, InputProps>((props, ref) => {
     theme: propsTheme,
     ...rest
   } = props || {};
-  const { theme } = useContext(ConfigThemeContext);
   const inputRef = React.useRef<InputRef>(null);
-  const { className: configClassName = "", style: configStyle = {} } =
-    useComponentConfig("input") || {};
+  const {
+    theme,
+    className: configClassName = "",
+    style: configStyle = {},
+  } = useComponentConfig("input") || {};
 
   function imperativeHandle() {
     const inputMethods: InputRef = inputRef.current as InputRef;

@@ -1,7 +1,12 @@
+@import '../theme.scss';
 $header-height: 5rem;
 $menu-height: 4rem;
 $menu-width: 6rem;
 $btn-size: 4rem;
+
+.header[date-theme="dack"] {
+  @include theme-variables(dark);
+}
 
 @mixin menu-item-styles() {
   width: $menu-width;
@@ -15,44 +20,51 @@ $btn-size: 4rem;
   text-overflow: ellipsis;
 }
 
-header {
+.header {
+  @include theme-variables(light);
   height: $header-height;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+  background-color: var(--bg-contrast);
+  transition: all 0.3s ease;
 
-.left,
-.right {
-  margin: 0.5rem;
-  width: $btn-size;
-  height: $btn-size;
-  background-color: black;
-}
-
-.menu {
-  height: $menu-height;
-  line-height: $menu-height;
-  position: relative;
-
-  .menu-list {
-    display: flex;
-
-    .menu-list-nav {
-      @include menu-item-styles();
-
-      &:hover {
-        color: #646464;
-      }
-    }
+  .left,
+  .right {
+    margin: 0.5rem;
+    width: $btn-size;
+    height: $btn-size;
+    text-align: center;
+    line-height: $btn-size;
+    cursor: pointer;
+    color: var(--text-primary);
   }
 
-  .select-list {
-    @include menu-item-styles();
-    transition: all 0.5s;
-    position: absolute;
-    background-color: #cccccc31;
-    top: 0;
-    z-index: -1;
+  .menu {
+    height: $menu-height;
+    line-height: $menu-height;
+    position: relative;
+    color: var(--text-primary);
+
+    .menu-list {
+      display: flex;
+
+      .menu-list-nav {
+        @include menu-item-styles();
+
+        &:hover {
+          color: var(--bg-hover);
+        }
+      }
+    }
+
+    .select-list {
+      @include menu-item-styles();
+      transition: all 0.5s;
+      position: absolute;
+      background-color: var(--bg-active);
+      top: 0;
+      z-index: -1;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { getDefaultValue } from "./style";
 import { IConfigContext, IConfigTemeContext, Theme } from "./typescript";
 
@@ -8,7 +8,5 @@ export const ConfigContext = React.createContext<IConfigContext>({
 
 export const ConfigThemeContext = React.createContext<IConfigTemeContext>({
   theme: "light",
-  toggleTheme: (val) => {
-    console.log(val);
-  },
+  toggleTheme: (val) => {},
 });

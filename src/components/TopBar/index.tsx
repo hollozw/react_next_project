@@ -3,24 +3,21 @@
 import Link from "next/link";
 import { btnList } from "./utils";
 import "./index.scss";
-import { useContext, useRef } from "react";
-import { ConfigThemeContext } from "../context-provider/context";
-import { useMoving, useTheme } from "./hooks";
+import { useRef } from "react";
+import { useMoving } from "./hooks";
 import { usePathname } from "next/navigation";
+import { useComponentConfig } from "../context-provider/hooks";
 
 const TopBar = (props: any) => {
   const pathname = usePathname();
-  const { theme, toggleTheme } = useContext(ConfigThemeContext);
+  const { theme, toggleTheme } = useComponentConfig("TopBar");
   const menuRef = useRef(null);
 
-  console.log(theme, "theme");
-
-  const { headerStyle } = useTheme(theme);
   const { select, positionX } = useMoving({ menuRef, pathname });
 
   return (
     <>
-      <header style={headerStyle}>
+      <header className="header" data-theme={theme}>
         <div className="left">icon</div>
         <div className="menu">
           <div className="menu-list" ref={menuRef}>

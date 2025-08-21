@@ -1,21 +1,6 @@
 "use client";
-import React, { CSSProperties, useEffect, useMemo, useState } from "react";
-import { Theme } from "../context-provider/typescript";
+import React, { useEffect, useMemo, useState } from "react";
 import { btnList } from "./utils";
-
-export const useTheme = (theme: Theme) => {
-  return {
-    headerStyle: useMemo<CSSProperties>(() => {
-      if (theme === "dark") {
-        return {
-          backgroundColor: "#ccc",
-          borderBottom: '1px solid #ccc'
-        };
-      }
-      return { backgroundColor: "black" };
-    }, [theme]),
-  };
-};
 
 interface IuseMoving {
   menuRef: React.MutableRefObject<null | HTMLDivElement>;

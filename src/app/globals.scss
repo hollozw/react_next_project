@@ -1,0 +1,23 @@
+@import '../components/theme.scss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @include theme-variables(light);
+}
+
+[data-theme="dark"] {
+  @include theme-variables(dark);
+}
+
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}

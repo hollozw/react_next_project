@@ -1,6 +1,6 @@
 import React from "react";
 
-export type TComponentName = "input" | "form";
+export type TComponentName = "TopBar" | "input" | "form";
 
 export type Theme = "light" | "dark" | "custom";
 
