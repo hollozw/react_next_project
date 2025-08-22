@@ -12,18 +12,27 @@ interface IProvider {
   children: React.ReactNode;
 }
 export const ProviderConfigTheme = ({ children }: IProvider) => {
-  const [theme, setTheme] = useState<Theme>(
-    (window.localStorage.getItem("theme") as Theme) ?? "light"
-  );
+  const [theme, setTheme] = useState<Theme>("light");
 
   function toggleTheme(val: Theme) {
     setTheme(val);
   }
 
   useEffect(() => {
+    // 这些代码只会在客户端执行
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark";
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+    console.log(theme, 'theme')
+    setTheme(theme);
+  }, []);
+
+  useEffect(() => {
     const root = document.documentElement;
     root.setAttribute("data-theme", theme);
-    window.localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   return (

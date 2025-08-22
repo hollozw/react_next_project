@@ -1,12 +1,7 @@
-@import '../theme.scss';
 $header-height: 5rem;
 $menu-height: 4rem;
 $menu-width: 6rem;
 $btn-size: 4rem;
-
-.header[date-theme="dack"] {
-  @include theme-variables(dark);
-}
 
 @mixin menu-item-styles() {
   width: $menu-width;
@@ -19,14 +14,18 @@ $btn-size: 4rem;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.header[data-theme="dark"]{
+  --text-hover: #4263eb;
+}
 
 .header {
-  @include theme-variables(light);
+  --text-hover: #364fc7;
+  --accent-active: #3b5bdb;
   height: $header-height;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bg-contrast);
+  background-color: var(--bg-tertiary);
   transition: all 0.3s ease;
 
   .left,
@@ -37,23 +36,29 @@ $btn-size: 4rem;
     text-align: center;
     line-height: $btn-size;
     cursor: pointer;
+    background-color: var(--bg-tertiary);
     color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .menu {
     height: $menu-height;
     line-height: $menu-height;
     position: relative;
-    color: var(--text-primary);
 
     .menu-list {
       display: flex;
+      color: var(--text-primary);
+      background-color: var(--bg-tertiary);
 
       .menu-list-nav {
         @include menu-item-styles();
+        z-index: 10;
 
         &:hover {
-          color: var(--bg-hover);
+          color: var(--text-hover);
         }
       }
     }
@@ -62,9 +67,9 @@ $btn-size: 4rem;
       @include menu-item-styles();
       transition: all 0.5s;
       position: absolute;
-      background-color: var(--bg-active);
+      background-color: var(--accent-active);
       top: 0;
-      z-index: -1;
+      z-index: 1;
     }
   }
 }

@@ -16,7 +16,7 @@ html {
   font-size: 16px;
 }
 
-body {
+body, div {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: all 0.3s ease;

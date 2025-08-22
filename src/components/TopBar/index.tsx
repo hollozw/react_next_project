@@ -4,9 +4,13 @@ import Link from "next/link";
 import { btnList } from "./utils";
 import "./index.scss";
 import { useRef } from "react";
+import Image from "next/image";
 import { useMoving } from "./hooks";
 import { usePathname } from "next/navigation";
 import { useComponentConfig } from "../context-provider/hooks";
+import sum from "@/public/svg/太阳.svg";
+import moon from "@/public/svg/月亮.svg";
+import icon from "@/public/favicon.ico";
 
 const TopBar = (props: any) => {
   const pathname = usePathname();
@@ -18,7 +22,9 @@ const TopBar = (props: any) => {
   return (
     <>
       <header className="header" data-theme={theme}>
-        <div className="left">icon</div>
+        <div className="left">
+          <Image src={icon} width={45} alt="" />
+        </div>
         <div className="menu">
           <div className="menu-list" ref={menuRef}>
             {btnList.map((item, index) => {
@@ -51,7 +57,7 @@ const TopBar = (props: any) => {
             toggleTheme(theme === "light" ? "dark" : "light");
           }}
         >
-          切换主题
+          <Image alt="" width={45} src={theme === "light" ? sum : moon} />
         </div>
       </header>
     </>
