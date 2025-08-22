@@ -1,0 +1,93 @@
+$themes: (
+  light: ( // 基础背景色
+    bg-contrast:#2d2d2d, //相反背景色
+    bg-primary: #ffffff, // 主背景 - 纯白
+    bg-secondary: #f8f9fa, // 次级背景 - 极浅灰
+
+    // 衍生背景色
+    bg-tertiary: #f1f3f5, // 三级背景 - 稍深的浅灰
+    bg-card: #ffffff, // 卡片背景
+    bg-hover: #e9ecef, // 悬停状态背景
+    bg-active: #dee2e6, // 激活状态背景
+
+    // 文本颜色
+    text-contrast:#f8f9fa, //相反文字颜色
+    text-primary: #212529, // 主要文本 - 深灰近黑
+    text-secondary: #495057, // 次级文本 - 中灰
+    text-tertiary: #6c757d, // 三级文本 - 浅灰
+    text-muted: #adb5bd, // 禁用/次要文本
+
+    // 边框颜色
+    border-primary: #dee2e6, // 主要边框 - 浅灰
+    border-secondary: #e9ecef, // 次级边框 - 更浅的灰
+    border-accent: #ced4da, // 强调边框
+
+    // 功能色
+    accent-primary: #4263eb, // 主强调色 - 蓝色
+    accent-secondary: #748ffc, // 次强调色 - 浅蓝
+    success: #2b8a3e, // 成功色 - 绿色
+    warning: #e67700, // 警告色 - 橙色
+    error: #c92a2a, // 错误色 - 红色
+    info: #1864ab, // 信息色 - 深蓝
+
+    // 交互状态
+    accent-hover: #364fc7, // 强调色悬停
+    accent-active: #3b5bdb, // 强调色激活
+
+    // 阴影
+    shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1),
+    shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1),
+    shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1)),
+  dark: ( // 基础背景色 (基于浅色主题的深色版本)
+    bg-contrast:#f1f3f5, //相反背景色
+    bg-primary: #121212, // 主背景 - 深黑
+    bg-secondary: #1e1e1e, // 次级背景 - 稍亮的黑
+
+    // 衍生背景色
+    bg-tertiary: #2d2d2d, // 三级背景 - 灰黑
+    bg-card: #1a1a1a, // 卡片背景
+    bg-hover: #333333, // 悬停状态背景
+    bg-active: #404040, // 激活状态背景
+
+    // 文本颜色
+    text-contrast:#212529, //相反文字颜色
+    text-primary: #f8f9fa, // 主要文本 - 近白色
+    text-secondary: #e9ecef, // 次级文本 - 浅灰
+    text-tertiary: #ced4da, // 三级文本 - 中灰
+    text-muted: #6c757d, // 禁用/次要文本
+
+    // 边框颜色
+    border-primary: #495057, // 主要边框 - 深灰
+    border-secondary: #343a40, // 次级边框 - 更深的灰
+    border-accent: #6c757d, // 强调边框
+
+    // 功能色 (适当调亮以适应深色背景)
+    accent-primary: #5c7cfa, // 主强调色 - 亮蓝色
+    accent-secondary: #748ffc, // 次强调色 - 浅蓝
+    success: #51cf66, // 成功色 - 亮绿色
+    warning: #ffa94d, // 警告色 - 亮橙色
+    error: #ff6b6b, // 错误色 - 亮红色
+    info: #4dabf7, // 信息色 - 亮蓝色
+
+    // 交互状态
+    accent-hover: #4263eb, // 强调色悬停
+    accent-active: #364fc7, // 强调色激活
+
+    // 阴影 (深色主题下使用更 subtle 的阴影)
+    shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3),
+    shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25),
+    shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2))
+);
+
+@mixin theme-variables($theme-name) {
+  $theme: map-get($themes, $theme-name);
+
+  @if not $theme {
+    @error "Theme '#{$theme-name}' not found. Available themes: #{map-keys($themes)}";
+  }
+
+  // 自动遍历theme map中的所有变量
+  @each $key, $value in $theme {
+    --#{$key}: #{$value};
+  }
+}

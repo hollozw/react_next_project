@@ -1,8 +1,8 @@
 import React from "react";
 
-export type TComponentName = "input" | "form";
+export type TComponentName = "TopBar" | "input" | "form";
 
-export type TTheme = "light" | "dark" | "custom";
+export type Theme = "light" | "dark" | "custom";
 
 export type TDefaultConfiguration<T = IComponentConfig> = {
   [key in TComponentName]?: T;
@@ -16,7 +16,12 @@ export interface IComponentConfig {
 }
 
 export interface IConfigContext {
-  components: (theme: TTheme) => TDefaultConfiguration;
+  components: (theme: Theme) => TDefaultConfiguration;
   prefixCls?: string;
-  theme?: TTheme;
+  theme?: Theme;
+}
+
+export interface IConfigTemeContext {
+  theme: Theme;
+  toggleTheme: (theme: Theme) => void;
 }

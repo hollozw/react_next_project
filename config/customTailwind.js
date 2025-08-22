@@ -16,30 +16,9 @@ module.exports.theme = (function () {
   return {
     extend: {
       colors: {
-        // 背景色
-        background: {
-          primary: "#1A1A1A",
-          secondary: "#262626",
-          highlight: "#333333",
-        },
-        // 文字色
-        color: {
-          primary: "#E0E0E0",
-          secondary: "#B0B0B0",
-          highlight: "#FFFFFF",
-        },
-        // 强调色
-        accent: {
-          primary: "#4A90E2",
-          secondary: "#9B59B6",
-          success: "#2ECC71",
-          warning: "#F39C12",
-          error: "#E74C3C",
-        },
-        // 边框色
-        borderColor: {
-          primary: "#404040",
-          highlight: "#4A90E2",
+        primary: {
+          light: '#2563eb', // 亮色主题主色
+          dark: '#3b82f6'   // 暗色主题主色
         },
       },
       boxShadow: {

@@ -9,3 +9,9 @@ export const sizeHeight: TSizeHeight = {
   middle: "2rem",
   large: "2.5rem",
 };
+
+export const sizeFont: TSizeHeight = {
+  small: "0.875rem",
+  middle: "1rem",
+  large: "1.125rem",
+};
