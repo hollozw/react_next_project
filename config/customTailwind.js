@@ -17,8 +17,8 @@ module.exports.theme = (function () {
     extend: {
       colors: {
         primary: {
-          light: '#2563eb', // 亮色主题主色
-          dark: '#3b82f6'   // 暗色主题主色
+          light: '#2563eb',
+          dark: '#3b82f6'
         },
       },
       boxShadow: {
