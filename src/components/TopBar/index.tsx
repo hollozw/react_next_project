@@ -21,7 +21,7 @@ const TopBar = (props: any) => {
 
   return (
     <>
-      <header className="header" data-theme={theme}>
+      <header className="header">
         <div className="left">
           <Image src={icon} width={45} alt="" />
         </div>

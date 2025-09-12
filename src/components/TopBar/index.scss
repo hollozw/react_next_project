@@ -14,12 +14,8 @@ $btn-size: 4rem;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.header[data-theme="dark"]{
-  --text-hover: #4263eb;
-}
-
 .header {
-  --text-hover: #364fc7;
+  --text-hover: #7d8ff5;
   --accent-active: #3b5bdb;
   height: $header-height;
   display: flex;

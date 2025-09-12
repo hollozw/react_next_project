@@ -24,8 +24,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <ProviderConfigTheme>
           <ProviderConfig>
-            <TopBar />
-            <main>{children}</main>
+            <div className="w-full h-[100vh] flex flex-col">
+              <TopBar />
+              <main className="flex-grow">{children}</main>
+            </div>
           </ProviderConfig>
         </ProviderConfigTheme>
       </body>

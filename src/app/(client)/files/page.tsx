@@ -4,6 +4,11 @@ import "./index.scss";
 import { useFiles, useSortable } from "./useHook";
 import { useRequest } from "ahooks";
 import { downloadMultipleFiles, changeFileName } from "./methods";
+import Image from "next/image";
+import upload from "@/public/imgs/upload.png";
+import test from "@/public/imgs/横屏test.webp";
+import test1 from "@/public/imgs/竖屏test.jpg";
+import SideBar from "@/components/SideBar";
 // import { Input } from "./Input";
 
 const Index = (props: unknown) => {
@@ -22,12 +27,12 @@ const Index = (props: unknown) => {
     sortableIndex.forEach((item, index: number) => {
       newFileList[index] = files[item];
     });
-    console.log(newFileList, 'newFileList')
     downloadMultipleFiles(newFileList);
   }
 
   return (
-    <>
+    <div className="flex h-full overflow-hidden">
+      <SideBar data={[{ text: "添加图片", fn: () => {} }]} />
       <header className="full relative pt-5 box-border">
         <form>
           <input
@@ -43,9 +48,10 @@ const Index = (props: unknown) => {
             htmlFor="fileInput"
             className="inputFile box-border rounded-custom-10 overflow-hidden block w-40 h-40 border-2 border-custom-gray relative left-1/2 translate-y-[-50%]"
           >
-            <img
+            <Image
+              alt=""
               className="relative top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] "
-              src="./imgs/upload.png"
+              src={upload}
             />
           </label>
         </div>
@@ -78,14 +84,18 @@ const Index = (props: unknown) => {
                   }}
                 /> */}
                 <div className="photo-container">
-                  <img className="photo" src={fileUrl} alt={file.name} />
+                  <Image
+                    className="w-[300px] max-h-[300px] rounded-[30px]"
+                    src={test1}
+                    alt=""
+                  />
                 </div>
               </div>
             </>
           );
         })}
       </nav>
-    </>
+    </div>
   );
 };
 
