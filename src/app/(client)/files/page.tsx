@@ -1,18 +1,17 @@
 "use client";
 import { useRef, useState } from "react";
 import "./index.scss";
-import { useFiles, useSortable } from "./useHook";
-import { useRequest } from "ahooks";
-import { downloadMultipleFiles, changeFileName } from "./methods";
+import { useFiles, useSortable } from "./hooks";
+import { downloadMultipleFiles, changeFileName } from "./utils";
 import Image from "next/image";
 import upload from "@/public/imgs/upload.png";
 import test from "@/public/imgs/横屏test.webp";
 import test1 from "@/public/imgs/竖屏test.jpg";
 import SideBar from "@/components/SideBar";
+import SwitchPhotots from "./components/SwitchPhotots";
 // import { Input } from "./Input";
 
 const Index = (props: unknown) => {
-  const { data, loading } = useRequest(async () => {});
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const navRef = useRef<HTMLElement | null>(null);
 
@@ -20,8 +19,25 @@ const Index = (props: unknown) => {
 
   const { sortableIndex } = useSortable(navRef);
 
+  const sideBarData = [
+    {
+      value: (
+        <label htmlFor="fileInput" className="cursor-pointer">
+          添加文件
+        </label>
+      )
+    },
+    {
+      value: (
+        <button type="submit" onClick={submitFile}>
+          提交文件
+        </button>
+      )
+    }
+  ]
+
   function submitFile() {
-    if (navRef.current === null) return;
+    if (navRef.current === null || !sortableIndex.length) return;
     setIsSubmit(true);
     const newFileList: File[] = [...files];
     sortableIndex.forEach((item, index: number) => {
@@ -32,39 +48,18 @@ const Index = (props: unknown) => {
 
   return (
     <div className="flex h-full overflow-hidden">
-      <SideBar data={[{ text: "添加图片", fn: () => {} }]} />
-      <header className="full relative pt-5 box-border">
-        <form>
-          <input
-            type="file"
-            onChange={onFileChange}
-            multiple
-            style={{ display: "none" }}
-            id="fileInput"
-          />
-        </form>
-        <div className="w-full">
-          <label
-            htmlFor="fileInput"
-            className="inputFile box-border rounded-custom-10 overflow-hidden block w-40 h-40 border-2 border-custom-gray relative left-1/2 translate-y-[-50%]"
-          >
-            <Image
-              alt=""
-              className="relative top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] "
-              src={upload}
-            />
-          </label>
-        </div>
-
-        <button
-          className="absolute right-0 top-1/2 translate-x-[-50%]"
-          type="submit"
-          onClick={submitFile}
-        >
-          提交文件
-        </button>
-      </header>
-      <nav
+      <SideBar data={sideBarData} />
+      <form>
+        <input
+          type="file"
+          onChange={onFileChange}
+          multiple
+          style={{ display: "none" }}
+          id="fileInput"
+        />
+      </form>
+      <SwitchPhotots files={files} />
+      {/* <nav
         ref={navRef}
         className="flex flex-wrap nav_class border-t-2 border-black "
       >
@@ -73,7 +68,7 @@ const Index = (props: unknown) => {
           return (
             <>
               <div className="photo_nav" key={index} data-index={index}>
-                {/* <Input
+                <Input
                   class="title"
                   val={file.name}
                   onChange={(val: string) => {
@@ -82,7 +77,7 @@ const Index = (props: unknown) => {
                       return file;
                     });
                   }}
-                /> */}
+                />
                 <div className="photo-container">
                   <Image
                     className="w-[300px] max-h-[300px] rounded-[30px]"
@@ -94,7 +89,7 @@ const Index = (props: unknown) => {
             </>
           );
         })}
-      </nav>
+      </nav> */}
     </div>
   );
 };

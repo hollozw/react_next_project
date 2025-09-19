@@ -10,7 +10,6 @@ export const uploadFile = async ({ dir, file }: IUploadFileParm) => {
       },
       body: JSON.stringify({ dir }), // 传递文件夹路径
     });
-    // console.log(res, "res");
   } catch (error) {
     return "";
   }

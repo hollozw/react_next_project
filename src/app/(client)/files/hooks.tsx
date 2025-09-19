@@ -8,7 +8,7 @@ import {
 } from "react";
 import Sortable from "sortablejs";
 import { TSetState } from "./type-file";
-import { getFileDataIndex } from "./methods";
+import { getFileDataIndex } from "./utils";
 
 export const useSortable = (navRef: MutableRefObject<HTMLElement | null>) => {
   const [sortable, setSortable] = useState<Sortable | null>(null);
