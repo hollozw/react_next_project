@@ -1,23 +1,16 @@
 "use client";
 import { useRef, useState } from "react";
 import "./index.scss";
-import { useFiles, useSortable } from "./hooks";
-import { downloadMultipleFiles, changeFileName } from "./utils";
-import Image from "next/image";
-import upload from "@/public/imgs/upload.png";
-import test from "@/public/imgs/横屏test.webp";
-import test1 from "@/public/imgs/竖屏test.jpg";
+import { downloadMultipleFiles } from "./utils";
 import SideBar from "@/components/SideBar";
 import SwitchPhotots from "./components/SwitchPhotots";
+import { SitchPhotoChildHandle } from "./type-file";
 // import { Input } from "./Input";
 
 const Index = (props: unknown) => {
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
-  const navRef = useRef<HTMLElement | null>(null);
+  const switchPhotoRef = useRef<null | SitchPhotoChildHandle>(null);
 
-  const { files, setFile, onFileChange } = useFiles(isSubmit, setIsSubmit);
-
-  const { sortableIndex } = useSortable(navRef);
 
   const sideBarData = [
     {
@@ -25,40 +18,32 @@ const Index = (props: unknown) => {
         <label htmlFor="fileInput" className="cursor-pointer">
           添加文件
         </label>
-      )
+      ),
     },
     {
       value: (
         <button type="submit" onClick={submitFile}>
           提交文件
         </button>
-      )
-    }
-  ]
+      ),
+    },
+  ];
 
   function submitFile() {
-    if (navRef.current === null || !sortableIndex.length) return;
+    if (switchPhotoRef.current === null) return;
     setIsSubmit(true);
-    const newFileList: File[] = [...files];
-    sortableIndex.forEach((item, index: number) => {
-      newFileList[index] = files[item];
-    });
-    downloadMultipleFiles(newFileList);
+    const files = switchPhotoRef.current?.getValue();
+    downloadMultipleFiles(files);
   }
 
   return (
     <div className="flex h-full overflow-hidden">
       <SideBar data={sideBarData} />
-      <form>
-        <input
-          type="file"
-          onChange={onFileChange}
-          multiple
-          style={{ display: "none" }}
-          id="fileInput"
-        />
-      </form>
-      <SwitchPhotots files={files} />
+      <SwitchPhotots
+        ref={switchPhotoRef}
+        isSubmit={isSubmit}
+        setIsSubmit={setIsSubmit}
+      />
       {/* <nav
         ref={navRef}
         className="flex flex-wrap nav_class border-t-2 border-black "

@@ -9,4 +9,8 @@ export interface IUploadFileParm {
   file?: File;
 }
 
-export type TGetFIleDataIndex = (eLementList: HTMLElement[]) => number[];
+export type TGetFIleDataIndex = (eLementList: HTMLElement[] | Element[]) => number[];
+
+export type SitchPhotoChildHandle = {
+  getValue: () => File[];
+};
