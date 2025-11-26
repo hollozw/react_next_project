@@ -18,6 +18,8 @@ $btn-size: 4rem;
   --text-hover: #7d8ff5;
   --accent-active: #3b5bdb;
   height: $header-height;
+  width: 100%;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;

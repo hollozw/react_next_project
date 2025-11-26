@@ -1,4 +1,0 @@
-
-const useRender = (props: any) => {
-  
-}

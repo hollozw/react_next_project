@@ -6,6 +6,8 @@ import {
   ProviderConfig,
   ProviderConfigTheme,
 } from "@/components/context-provider/provider";
+import { useState } from "react";
+import Menu from "@/components/Menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <ProviderConfigTheme>
           <ProviderConfig>
-            <div className="w-full h-[100vh] flex flex-col">
-              <TopBar />
-              <main className="flex-grow">{children}</main>
+            <TopBar />
+            <div className="w-full h-[100vh] pt-20 box-border">
+              <Menu />
+              <div>{children}</div>
             </div>
           </ProviderConfig>
         </ProviderConfigTheme>
