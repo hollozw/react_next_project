@@ -8,7 +8,7 @@ const Menu = () => {
   return (
     <>
       <div className="w-[25%] max-w-[250px] h-full box-border border-r">
-
+        <div className="w-full h-4"></div>
       </div>
     </>
   )

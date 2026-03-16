@@ -90,4 +90,5 @@ const SwitchPhotots = forwardRef<SitchPhotoChildHandle, ISwitchPhototsProps>(
   }
 );
 
+SwitchPhotots.displayName = "FilesComponents";
 export default SwitchPhotots;

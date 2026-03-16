@@ -19,7 +19,6 @@ export const ProviderConfigTheme = ({ children }: IProvider) => {
   }
 
   useEffect(() => {
-    // 这些代码只会在客户端执行
     const savedTheme = localStorage.getItem("theme") as "light" | "dark";
     const systemPrefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
