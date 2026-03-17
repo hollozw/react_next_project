@@ -4,10 +4,11 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main className="w-full h-full">
-      <header className="">
-
+    <>
+      <header className="h-16">
       </header>
-    </main>
+      <main className="w-full h-full">
+      </main>
+    </>
   );
 }

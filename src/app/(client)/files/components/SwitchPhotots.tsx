@@ -64,7 +64,6 @@ const SwitchPhotots = forwardRef<SitchPhotoChildHandle, ISwitchPhototsProps>(
               >
                 <div
                   onBlur={(evt) => {
-                    console.log(evt.target.textContent);
                   }}
                   className="w-full h-[3rem] text-center leading-[3rem] text-[1rem]  overflow-auto mb-[0.5rem]"
                   contentEditable

@@ -17,6 +17,8 @@ export const useMoving = ({ menuRef, pathname }: IuseMoving) => {
     btnList.forEach((item, index) => {
       if (item.href === pathname) {
         setPreIndex(index);
+      } else if(pathname === '/') {
+        setPreIndex(0);
       }
     });
   }, [pathname]);

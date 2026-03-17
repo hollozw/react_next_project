@@ -18,7 +18,6 @@ const TopBar = (props: any) => {
   const menuRef = useRef(null);
 
   const { select, positionX } = useMoving({ menuRef, pathname });
-
   return (
     <>
       <header className="header">

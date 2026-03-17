@@ -24,7 +24,7 @@ export const ProviderConfigTheme = ({ children }: IProvider) => {
       "(prefers-color-scheme: dark)"
     ).matches;
     const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
-    console.log(theme, 'theme')
+    // console.log(theme, 'theme')
     setTheme(theme);
   }, []);
 

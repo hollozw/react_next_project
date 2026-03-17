@@ -1,4 +1,3 @@
-import TopBar from "@/components/TopBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
@@ -6,8 +5,6 @@ import {
   ProviderConfig,
   ProviderConfigTheme,
 } from "@/components/context-provider/provider";
-import { useState } from "react";
-import Menu from "@/components/Menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ProviderConfigTheme>
           <ProviderConfig>
-            <TopBar />
-            <div className="w-full h-[100vh] pt-20 box-border">
-              <Menu />
-              <div>{children}</div>
-            </div>
+            {children}
           </ProviderConfig>
         </ProviderConfigTheme>
       </body>

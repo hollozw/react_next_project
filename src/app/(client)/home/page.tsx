@@ -1,9 +1,14 @@
-import SideBar from "@/components/SideBar";
+'use client'
 
-const Home = () => {
+import { useEffect } from "react";
+
+
+const Home = ({ detailPhotos }: any) => {
+  useEffect(() => {
+  }, [])
   return (
     <div className="w-full h-full">
-      {/* <header className="h-[400px] flex justify-center items-center"></header> */}
+      children
     </div>
   );
 };
